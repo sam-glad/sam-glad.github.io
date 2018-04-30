@@ -10,24 +10,25 @@
   </head>
   <body>
     <header>
-      <div class="top shadow-top-left-right">
+      <div class="top">
         <form id="search">
             <input type="text" name="restaurant-search" id="restaurant-search" class="restaurant-search" placeholder="Search for Restaurants by name, Cuisine, Location" />
         </form>
       </div>
     </header>
     <div class="wrapper">
-      <div id="sidenav" class="sidenav shadow-bottom-left">
-        <ul class="filters">
+      <div class="sidenav-wrapper">
+        <div class="sidenav">
+          <ul class="filters">
           <li class="filter">Cusine/Food Type</li>
             <ul class="filter-options">
-              <li><span class="filter-option">Italian</span><span class="results-for-type">70</span></li>
-              <li class="selected-filter"><span class="filter-option">American</span><span class="results-for-type">47</span></li>
-              <li><span class="filter-option">Californian</span><span class="results-for-type">42</span></li>
-              <li><span class="filter-option">French</span><span class="results-for-type">31</span></li>
-              <li><span class="filter-option">Seafood</span><span class="results-for-type">29</span></li>
-              <li><span class="filter-option">Japanese</span><span class="results-for-type">27</span></li>
-              <li><span class="filter-option">Indian</span><span class="results-for-type">29</span></li>
+              <li class="filter-item"><span class="filter-option">Italian</span><span class="results-for-type">70</span></li>
+              <li class="filter-item selected-filter"><span class="filter-option">American</span><span class="results-for-type">47</span></li>
+              <li class="filter-item"><span class="filter-option">Californian</span><span class="results-for-type">42</span></li>
+              <li class="filter-item"><span class="filter-option">French</span><span class="results-for-type">31</span></li>
+              <li class="filter-item"><span class="filter-option">Seafood</span><span class="results-for-type">29</span></li>
+              <li class="filter-item"><span class="filter-option">Japanese</span><span class="results-for-type">27</span></li>
+              <li class="filter-item"><span class="filter-option">Indian</span><span class="results-for-type">29</span></li>
             </ul>
           <li class="filter">Rating</li>
             <ul class="filter-options">
@@ -40,10 +41,63 @@
             </ul>
           <li class="filter">Payment Options</li>
         </ul>
+        </div>
       </div>
-      <div id="results" class="results shadow-bottom-right">
-        <div>
+      <div class="results-wrapper">
+        <div class="results-found">
+          <div class="stats">
           <p><b class="num-results-found">34 results found</b> in 0.002 seconds</p>
+          <div class="after-text-border"></div>
+        </div>
+        <div id="show-results">
+          <ul id="results-list" class="results-list">
+            <li class="result">
+              <div>
+              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
+              <img src="resources/graphics/star-empty.png" class="result-img">
+                <div class="result-text">
+                  <p class="result-name">Anchor and Hope</p>
+                  <p class="stars-reviews"><span class="star-rating">4.2</span>
+                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
+                    <span class="reviews-description">(1897 reviews)</span>
+                  </p>
+                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
+                </div>
+              </div>
+            </li>
+            <li class="result">
+              <div>
+              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
+              <img src="resources/graphics/star-empty.png" class="result-img">
+                <div class="result-text">
+                  <p class="result-name">Anchor and Hope</p>
+                  <p class="stars-reviews"><span class="star-rating">4.2</span>
+                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
+                    <span class="reviews-description">(1897 reviews)</span>
+                  </p>
+                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
+                </div>
+              </div>
+            </li>
+            <li class="result">
+              <div>
+              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
+              <img src="resources/graphics/star-empty.png" class="result-img">
+                <div class="result-text">
+                  <p class="result-name">Anchor and Hope</p>
+                  <p class="stars-reviews"><span class="star-rating">4.2</span>
+                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
+                    <span class="reviews-description">(1897 reviews)</span>
+                  </p>
+                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="show-more-div">
+            <button class="show-more">Show More</button>
+          </div>
+        </div>
         </div>
     </div>
   </div>
