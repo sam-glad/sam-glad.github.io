@@ -31,18 +31,8 @@ header {
   background-color: #FFFFFF;
 }
 
-/* TODO: FIX ALL THESE BOX SHADOWS */
-
-.shadow-top-left-right {
-  box-shadow: -1px 1px 3px 2px #CBCBCB, 1px 1px 3px 2px #CBCBCB, 0px -1px 3px 2px #CBCBCB;
-}
-
-.shadow-bottom-left {
-  box-shadow: -1px 1px 3px 2px #CBCBCB;
-}
-
-.shadow-bottom-right {
-  box-shadow: 1px 1px 3px 2px #CBCBCB
+.shadow-right-bottom-left {
+  box-shadow: 0px 3px 8px #CBCBCB;
 }
 
 .top {
