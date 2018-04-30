@@ -1,0 +1,35 @@
+QUESTION 1
+Hi George,
+
+Thanks for reaching out about this! To your question of how best to define **records** and **indexing**:
+
+A **record** is simply a collection of information about one specific entity; for instance, an *employee's* first name, last name, date of birth, and start date at a company all might be *attributes* which form a single *employee* record.
+
+An **index**, on the other hand, is essentially the blueprint for an *employee* record, with the crucial addition of being optimized for search on Algolia's end. This means that an *employee* index keeps track of those same attributes - first name, date of birth, etc. - and, thanks to our software, it also allows you to optimize how easy it is to find employees, particularly if you want to find them just by their last names, for instance.
+
+Note that for our official definitions, you can always take a look at our brief vocabulary section here (https://www.algolia.com/doc/guides/getting-started/what-is-algolia/?language=javascript#vocabulary).
+
+Regarding custom rankings, ideal ranking criteria depend upon what you and your business want to prioritize. For instance, if you simply want to drive specific results to the top, you can add a boolean attribute with a name like "featured" or "boosted" and use this attribute as a tiebreaker (more info on this example here: https://www.algolia.com/doc/tutorials/indexing/ranking/how-to-boost-or-penalize-some-records-in-the-search-results/). For a more general approach, take a look at our article on custom ranking (https://www.algolia.com/doc/guides/ranking/custom-ranking/) - the iPhone example demonstrates the basics very concisely - and please let me know if you have any questions about the specifics!
+
+Best,
+Sam
+
+QUESTION 2
+Hi Matt,
+
+We're always happy to get feedback – positive, negative, or mixed – as we continue to build upon our software. While we do intend to stick with the new dashboard for the time being, I am passing your note about clearing and deleting indexes along to our product team so that we can properly keep track of it, particularly so that we will see if it becomes a common concern. Please do not hesitate to reach out if there is anything else we can give you a hand with in the meantime.
+
+[NOTE: In this scenario, I would normally mention any insight I would have regarding *why* such a UI change was made in the first place. For instance, maybe we regularly had panicking users complaining about accidentally having deleted indexes prior to this change, and we accepted an increase in the process being a nuisance as a tradeoff for reducing accidental disasters. In my own experience, providing that sort of reasoning almost always softens the blow for frustrated users, as it no longer appears that we capriciously broke a pleasant UX purely for the sake of trying something new.]
+
+Best,
+Sam
+
+QUESTION 3
+Hi Leo,
+
+While we cover the high-level process here (https://www.algolia.com/doc/guides/getting-started/the-implementation-process/), the amount of development work can vary based on factors such as whether you'll be leveraging one of our API clients and/or framework integrations (https://www.algolia.com/doc/guides/getting-started/ecosystem-overview/?language=javascript#api-clients) - as most of our new users do - in addition to how much work you may need to do in order to prepare your data to be imported (i.e., getting it into a CSV or preparing a script to import it via our API) and how much work you will want to put into your front end, from which you would likely prepare your searches and display the results.
+
+If you have any questions about specific steps, please feel free to send them m way!
+
+Best,
+Sam

@@ -5,13 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Restaurant Locator - by Algolia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-
-  <div class="welcome-container">
-    <p>Hello buddy!</p>
-    <p>Welcome to the Solutions Engineering assignment.</p>
-    <p>This blank page is all yours, let's make it rock!</p>
+    <header>
+      <div class="top shadow-top-left-right">
+        <form id="search">
+            <input type="text" name="restaurant-search" id="restaurant-search" class="restaurant-search" placeholder="Search for Restaurants by name, Cuisine, Location" />
+        </form>
+      </div>
+    </header>
+    <div class="wrapper">
+      <div id="sidenav" class="sidenav shadow-bottom-left">
+        <ul class="filters">
+          <li class="filter">Cusine/Food Type</li>
+            <ul class="filter-options">
+              <li><span class="filter-option">Italian</span><span class="results-for-type">70</span></li>
+              <li class="selected-filter"><span class="filter-option">American</span><span class="results-for-type">47</span></li>
+              <li><span class="filter-option">Californian</span><span class="results-for-type">42</span></li>
+              <li><span class="filter-option">French</span><span class="results-for-type">31</span></li>
+              <li><span class="filter-option">Seafood</span><span class="results-for-type">29</span></li>
+              <li><span class="filter-option">Japanese</span><span class="results-for-type">27</span></li>
+              <li><span class="filter-option">Indian</span><span class="results-for-type">29</span></li>
+            </ul>
+          <li class="filter">Rating</li>
+            <ul class="filter-options">
+              <li class="stars"><span><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span></li>
+              <li class="stars"><span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span></li>
+              <li class="stars"><span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span></li>
+              <li class="stars"><span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span></li>
+              <li class="stars"><span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span></li>
+              <li class="stars"><span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /></li>
+            </ul>
+          <li class="filter">Payment Options</li>
+        </ul>
+      </div>
+      <div id="results" class="results shadow-bottom-right">
+        <div>
+          <p><b class="num-results-found">34 results found</b> in 0.002 seconds</p>
+        </div>
+    </div>
   </div>
 
   </body>
