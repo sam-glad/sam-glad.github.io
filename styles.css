@@ -81,10 +81,8 @@ li.filter {
 }
 
 li.selected-filter {
-  /* TODO: Fix highlight trailing off to the right*/
   background-color: #0090C7;
   border-radius: 3px;
-  /*width: 80%;*/
 }
 
 li.selected-filter > span {
@@ -94,8 +92,6 @@ li.selected-filter > span {
 ul.filter-options {
   list-style-type: none;
   padding: 5% 3% 10% 3%;
-  /*margin-right: 10%;*/
-  padding-right: 10%;
 }
 
 span.filter-option {
@@ -106,12 +102,13 @@ span.filter-option {
 li.filter-item {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
+  margin-right: 10%;
 }
 
 span.results-for-type {
   color: #9F9F9F;
   float: right;
-  margin-right: 15%;
+  margin-right: 8%;
 }
 
 .num-results-found {
@@ -211,7 +208,8 @@ span.star-rating {
 
 div.show-more-div {
   text-align: center;
-  padding-top: 3%;
+  padding-top: 2%;
+  padding-bottom: 3%
 }
 
 button.show-more {
