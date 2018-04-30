@@ -13,7 +13,6 @@ header {
 
 .wrapper {
   margin: 0 0 8% 10%;
-  padding-top: 1%;
   background-color: #FFFFFF;
   width: 80%;
   overflow: hidden;
@@ -22,8 +21,9 @@ header {
 .sidenav-wrapper {
   float: left;
   width: 24.8%;
+  padding-top: 1%;
   background-color: #FFFFFF;
-  border-right: 1px solid;
+  border-right: 2px solid;
   border-color: #F6F6F6;
 }
 
@@ -93,9 +93,9 @@ li.selected-filter > span {
 
 ul.filter-options {
   list-style-type: none;
-  padding-left: 3%;
-  padding-bottom: 12%;
-  padding-top: 5%;
+  padding: 5% 3% 10% 3%;
+  /*margin-right: 10%;*/
+  padding-right: 10%;
 }
 
 span.filter-option {
@@ -122,6 +122,7 @@ span.results-for-type {
 .results-wrapper {
   float: left;
   width: 75%;
+  padding-top: 1%;
   background-color: #FFFFFF;
 }
 
@@ -147,7 +148,7 @@ img.star {
 .after-text-border {
   position: relative;
   top: 5px;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 2px solid #E5E5E5;
   flex-grow: 1;
   margin: 0 3% 0 3%;
 }
