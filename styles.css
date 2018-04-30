@@ -2,7 +2,7 @@ body {
   background-image: url("resources/graphics/background.png");
   background-repeat: repeat;
   font-size: 100%;
-  max-width: 1280px;
+  /*max-width: 1280px;*/
 }
 
 header {
