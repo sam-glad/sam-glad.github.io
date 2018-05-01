@@ -4,7 +4,8 @@ const indexName = 'restaurants';
 const client = algoliasearch(applicationID, apiKey);
 
 let helper = algoliasearchHelper(client, indexName, {
-  facets: ['food_type', 'stars_count']
+  facets: ['stars_count'],
+  disjunctiveFacets: ['food_type', 'payment_options']
 });
 
 // Admittedly a tad hacky - used to handle pagination smoothly
@@ -19,6 +20,12 @@ $('#food-types').on('click', 'li[id^="ft-"]', e => {
   appendResults = false;
   let facetValue = e.currentTarget.children[0].children[0].innerText;
   helper.toggleFacetRefinement('food_type', facetValue).search();
+});
+
+$('#payment-types').on('click', 'li[id^="pt-"]', e => {
+  appendResults = false;
+  let facetValue = e.currentTarget.children[0].children[0].innerText;
+  helper.toggleFacetRefinement('payment_options', facetValue).search();
 });
 
 $('#stars-count').on('click', 'li', e => {
@@ -37,6 +44,17 @@ function renderFoodTypeList(content) {
       let li = $(`<li id=ft-${foodType.name} class="facet-item"></li>`);
       li.html(`<p class="facet-wrapper"><span class="facet-option">${foodType.name}</span><span class="results-for-type">${foodType.count}</span></p>`);
       if(foodType.isRefined) li.addClass('selected-facet');
+      return li;
+    });
+  });
+}
+
+function renderPaymentFacetList(content) {
+  $('#payment-types').html(() => {
+    return $.map(content.getFacetValues('payment_options'), paymentType => {
+      let li = $(`<li id=pt-${paymentType.name} class="facet-item"></li>`);
+      li.html(`<p class="facet-wrapper"><span class="facet-option">${paymentType.name}</span><span class="results-for-type">${paymentType.count}</span></p>`);
+      if(paymentType.isRefined) li.addClass('selected-facet');
       return li;
     });
   });
@@ -145,6 +163,7 @@ function renderResults(content, appendResults) {
   renderStats(content);
   renderHits(content, appendResults);
   renderFoodTypeList(content);
+  renderPaymentFacetList(content);
 }
 
 helper.on('result', content => {
