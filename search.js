@@ -59,6 +59,12 @@ function renderFoodTypeList(content) {
 //   });
 // }
 
+function renderStats(content) {
+  $('p#stats').html(() => {
+    return `<b class="num-results-found">${content.nbHits} results found</b> in ${content.processingTimeMS / 1000} seconds`;
+  });
+}
+
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
   const maxStars = 5;
@@ -99,6 +105,7 @@ function renderHits(content) {
 }
 
 helper.on('result', content => {
+  renderStats(content);
   renderHits(content);
   renderFoodTypeList(content);
   // renderStarsFacet();
