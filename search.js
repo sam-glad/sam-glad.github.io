@@ -3,16 +3,21 @@ const apiKey = '27e4a1695307e93e63743e67aeda4b29';
 const indexName = 'restaurants';
 const client = algoliasearch(applicationID, apiKey);
 
-var helper = algoliasearchHelper(client, indexName, {
+let helper = algoliasearchHelper(client, indexName, {
   facets: ['food_type', 'stars_count']
 });
 
+// Admittedly a tad hacky - used to handle pagination smoothly
+var appendResults = false;
+
 $('#restaurant-search').on('keyup', (e) => {
+  appendResults = false;
   helper.setQuery(e.currentTarget.value).search();
 });
 
 $('#food-types').on('click', 'li[id^="ft-"]', e => {
-  let facetValue = e.currentTarget.children[0].textContent;
+  appendResults = false;
+  let facetValue = e.currentTarget.children[0].children[0].innerText;
   helper.toggleFacetRefinement('food_type', facetValue).search();
 });
 
@@ -46,7 +51,9 @@ function renderStats(content) {
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
   const maxStars = 5;
-  const fullStars = Math.round(hit.stars_count);
+  // I originally rounded instead of floored, but this could be confusing,
+  // since filtering for five-star-rated restaurants yields no results
+  const fullStars = Math.floor(hit.stars_count);
   const emptyStars = maxStars - fullStars;
   for(let i = 0; i < fullStars; i++) {
     starsParagraph+= '<img src="resources/graphics/stars-plain.png" class="star" />';
@@ -57,11 +64,8 @@ function buildStarsReviewsParagraph(hit) {
   return starsParagraph + '</span>';
 }
 
-function renderHits(content) {
-  $('#results-list').html(() => {
-    return $.map(content.hits, hit => {
-      let stars = buildStarsReviewsParagraph(hit);
-      return `<div id="show-results">
+function buildHitHtml(hit, stars) {
+  return `<div id="show-results">
           <ul id="results-list" class="results-list">
             <li class="result">
               <div>
@@ -78,9 +82,42 @@ function renderHits(content) {
             </li>
           </ul>
         </div>`;
-    });
-  });
 }
+
+function showHideShowMoreButton(content) {
+  const page = content.page + 1;
+  if (page < content.nbPages) {
+    $('#show-more').show();
+  } else {
+    $('#show-more').hide();
+  }
+}
+
+// Append or replace, depending on context
+function renderHits(content, appendResults) {
+  if (appendResults) {
+    $('#results-list').append(() => {
+      return $.map(content.hits, hit => {
+        let stars = buildStarsReviewsParagraph(hit);
+        return buildHitHtml(hit, stars);
+      });
+    });
+  } else {
+    $('#results-list').html(() => {
+      return $.map(content.hits, hit => {
+        let stars = buildStarsReviewsParagraph(hit);
+        return buildHitHtml(hit, stars);
+      });
+    });
+  }
+  showHideShowMoreButton(content)
+}
+
+// Pagination
+$('#show-more').on('click', e => {
+  appendResults = true;
+  helper.setPage(helper.getPage() + 1).search();
+});
 
 function searchWithGeoEnabled(location) {
   helper.setQueryParameter('getRankingInfo', true);
@@ -102,11 +139,11 @@ function renderNoResultsFound(content) {
   });
 }
 
-function renderResults(content) {
+function renderResults(content, appendResults) {
   $('#no-results-found').hide();
   $('#show-results').show();
   renderStats(content);
-  renderHits(content);
+  renderHits(content, appendResults);
   renderFoodTypeList(content);
 }
 
@@ -114,7 +151,7 @@ helper.on('result', content => {
   if (content.nbHits === 0) {
     renderNoResultsFound(content);
   } else {
-    renderResults(content);
+    renderResults(content, appendResults);
   }
 });
 
