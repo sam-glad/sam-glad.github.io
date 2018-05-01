@@ -85,7 +85,7 @@ function renderHits(content) {
 function searchWithGeoEnabled(location) {
   helper.setQueryParameter('getRankingInfo', true);
   helper.setQueryParameter('aroundLatLng', `${location.coords.latitude},${location.coords.longitude}`);
-  helper.setQueryParameter('aroundRadius', 118047);
+  helper.setQueryParameter('aroundRadius', 10000);
   helper.search();
 }
 
