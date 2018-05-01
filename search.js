@@ -178,6 +178,7 @@ function searchWithGeoEnabled(location) {
 }
 
 function searchWithoutGeoEnabled(error) {
+  console.log(error);
   helper.setQueryParameter('aroundLatLngViaIP', true);
   helper.search();
 }
