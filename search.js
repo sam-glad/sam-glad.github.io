@@ -173,14 +173,14 @@ $('#show-more').on('click', e => {
 function searchWithGeoEnabled(location) {
   helper.setQueryParameter('getRankingInfo', true);
   helper.setQueryParameter('aroundLatLng', `${location.coords.latitude},${location.coords.longitude}`);
-  helper.setQueryParameter('aroundRadius', 10000);
+  helper.setQueryParameter('aroundRadius', 20000);
   helper.search();
 }
 
 function searchWithoutGeoEnabled(error) {
   console.log(error);
   helper.setQueryParameter('aroundLatLngViaIP', true);
-  helper.setQueryParameter('aroundRadius', 10000);
+  helper.setQueryParameter('aroundRadius', 20000);
   helper.search();
 }
 
