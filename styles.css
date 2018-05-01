@@ -174,9 +174,10 @@ li.result {
 }
 
 .result-text {
+  top: -5px;
   float: left;
   position: relative;
-  margin-left: 3%;
+  margin-left: 25px;
 }
 
 p.result-name {
