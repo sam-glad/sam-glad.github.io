@@ -81,14 +81,16 @@ li.selected-facet > span {
 
 ul.facet-options {
   list-style-type: none;
-  padding: 5% 3% 10% 3%;
+  padding: 5% 3% 10% 0;
 }
 
 p.facet-wrapper {
+  max-width: 200%;
   margin: 0;
 }
 
 span.facet-option {
+  padding-left: 6%;
   color: #0E0E0E;
 }
 
