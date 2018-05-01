@@ -75,7 +75,7 @@ li.selected-facet {
   border-radius: 3px;
 }
 
-li.selected-facet > span {
+li.selected-facet > .facet-wrapper > span {
   color: #FFFFFF;
 }
 
@@ -106,7 +106,7 @@ li.facet-item:hover {
   border-radius: 3px;
 }
 
-li.facet-item:hover > span {
+li.facet-item:hover > .facet-wrapper > span {
   color: #FFFFFF;
 }
 
