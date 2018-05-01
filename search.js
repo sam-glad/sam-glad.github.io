@@ -30,7 +30,7 @@ function renderFoodTypeList(content) {
   $('#food-types').html(() => {
     return $.map(content.getFacetValues('food_type'), foodType => {
       let li = $(`<li id=ft-${foodType.name} class="facet-item"></li>`);
-      li.html(`<span class="facet-option">${foodType.name}</span><span class="results-for-type">${foodType.count}</span>`);
+      li.html(`<p class="facet-wrapper"><span class="facet-option">${foodType.name}</span><span class="results-for-type">${foodType.count}</span></p>`);
       if(foodType.isRefined) li.addClass('selected-facet');
       return li;
     });
