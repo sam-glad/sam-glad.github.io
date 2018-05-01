@@ -12,7 +12,7 @@
     <header>
       <div class="top">
         <form id="search">
-            <input type="text" name="restaurant-search" id="restaurant-search" class="restaurant-search" placeholder="Search for Restaurants by name, Cuisine, Location" />
+            <input type="search" autocomplete="off" id="restaurant-search" class="restaurant-search" placeholder="Search for Restaurants by name, Cuisine, Location" />
         </form>
       </div>
     </header>
@@ -46,61 +46,23 @@
       <div class="results-wrapper">
         <div class="results-found">
           <div class="stats">
-          <p><b class="num-results-found">34 results found</b> in 0.002 seconds</p>
-          <div class="after-text-border"></div>
-        </div>
-        <div id="show-results">
-          <ul id="results-list" class="results-list">
-            <li class="result">
-              <div>
-              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
-              <img src="resources/graphics/star-empty.png" class="result-img">
-                <div class="result-text">
-                  <p class="result-name">Anchor and Hope</p>
-                  <p class="stars-reviews"><span class="star-rating">4.2</span>
-                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
-                    <span class="reviews-description">(1897 reviews)</span>
-                  </p>
-                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
-                </div>
-              </div>
-            </li>
-            <li class="result">
-              <div>
-              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
-              <img src="resources/graphics/star-empty.png" class="result-img">
-                <div class="result-text">
-                  <p class="result-name">Anchor and Hope</p>
-                  <p class="stars-reviews"><span class="star-rating">4.2</span>
-                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
-                    <span class="reviews-description">(1897 reviews)</span>
-                  </p>
-                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
-                </div>
-              </div>
-            </li>
-            <li class="result">
-              <div>
-              <!-- PLACEHOLDER IMAGE - TODO: REMOVE -->
-              <img src="resources/graphics/star-empty.png" class="result-img">
-                <div class="result-text">
-                  <p class="result-name">Anchor and Hope</p>
-                  <p class="stars-reviews"><span class="star-rating">4.2</span>
-                    <span><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/stars-plain.png" class="star" /><img src="resources/graphics/star-empty.png" class="star" /></span>
-                    <span class="reviews-description">(1897 reviews)</span>
-                  </p>
-                  <p class="reviews-description no-left-margin">American &amp; Seafood | SOMA | $31 to $50</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="show-more-div">
-            <button class="show-more">Show More</button>
+            <p><b class="num-results-found">34 results found</b> in 0.002 seconds</p>
+            <div class="after-text-border"></div>
           </div>
-        </div>
+          <div id="show-results">
+            <ul id="results-list" class="results-list">
+            </ul>
+            <div class="show-more-div">
+              <button class="show-more">Show More</button>
+            </div>
+          </div>
         </div>
     </div>
   </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearchLite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch-helper@2.26.0/dist/algoliasearch.helper.min.js"></script>
+    <script src="search.js"></script>
   </body>
 </html>
