@@ -43,12 +43,6 @@ function renderStats(content) {
   });
 }
 
-function renderNoResultsFound(content) {
-  $('#show-results').html(() => {
-    return '<p>Sorry - no results found for that search. Try removing a filter or two.</p>'
-  });
-}
-
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
   const maxStars = 5;
@@ -88,13 +82,41 @@ function renderHits(content) {
   });
 }
 
-helper.on('result', content => {
-  if (content.nbHits === 0) {
-    renderNoResultsFound(content);
-  }
+function searchWithGeoEnabled(location) {
+  helper.setQueryParameter('getRankingInfo', true);
+  helper.setQueryParameter('aroundLatLng', `${location.coords.latitude},${location.coords.longitude}`);
+  helper.setQueryParameter('aroundRadius', 118047);
+  helper.search();
+}
+
+function searchWithoutGeoEnabled(error) {
+  helper.setQueryParameter('aroundLatLngViaIP', true);
+  helper.search();
+}
+
+function renderNoResultsFound(content) {
+  $('#no-results-found').show();
+  $('#show-results').hide();
+  $('p#stats').html(() => {
+    return `<b class="num-results-found">0 results found</b> in ${content.processingTimeMS / 1000} seconds`;
+  });
+}
+
+function renderResults(content) {
+  $('#no-results-found').hide();
+  $('#show-results').show();
   renderStats(content);
   renderHits(content);
   renderFoodTypeList(content);
+}
+
+helper.on('result', content => {
+  if (content.nbHits === 0) {
+    renderNoResultsFound(content);
+  } else {
+    renderResults(content);
+  }
 });
 
-helper.search();
+// Search!
+navigator.geolocation.getCurrentPosition(searchWithGeoEnabled, searchWithoutGeoEnabled);
