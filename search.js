@@ -11,7 +11,7 @@ let helper = algoliasearchHelper(client, indexName, {
 // Admittedly a tad hacky - used to handle pagination smoothly
 var appendResults = false;
 
-$('#restaurant-search').on('keyup', (e) => {
+$('#restaurant-search').on('keyup', e => {
   appendResults = false;
   helper.setQuery(e.currentTarget.value).search();
 });
@@ -25,6 +25,11 @@ $('#food-types').on('click', 'li[id^="ft-"]', e => {
 $('#payment-types').on('click', 'li[id^="pt-"]', e => {
   appendResults = false;
   let facetValue = e.currentTarget.children[0].children[0].innerText;
+  // Lump Carte Blanche and Diners Club in with Discover
+  if (facetValue === 'Discover') {
+    helper.toggleFacetRefinement('payment_options', 'Carte Blanche')
+    helper.toggleFacetRefinement('payment_options', 'Diners Club')
+  }
   helper.toggleFacetRefinement('payment_options', facetValue).search();
 });
 
@@ -50,11 +55,17 @@ function renderFoodTypeList(content) {
 }
 
 function renderPaymentFacetList(content) {
+  let permittedPaymentTypes = ['MasterCard', 'Visa', 'AMEX', 'Discover'];
+  let paymentTypes = content.getFacetValues('payment_options');
   $('#payment-types').html(() => {
-    return $.map(content.getFacetValues('payment_options'), paymentType => {
-      let li = $(`<li id=pt-${paymentType.name} class="facet-item"></li>`);
-      li.html(`<p class="facet-wrapper"><span class="facet-option">${paymentType.name}</span><span class="results-for-type">${paymentType.count}</span></p>`);
-      if(paymentType.isRefined) li.addClass('selected-facet');
+    return $.map(paymentTypes, paymentType => {
+      var li;
+      // Skip unnecessary payment options
+      if (!(permittedPaymentTypes.indexOf(paymentType.name) === -1)) {
+        li = $(`<li id=pt-${paymentType.name} class="facet-item"></li>`);
+        li.html(`<p class="facet-wrapper"><span class="facet-option">${paymentType.name}</span></p>`);
+        if(paymentType.isRefined) li.addClass('selected-facet');
+      }
       return li;
     });
   });
