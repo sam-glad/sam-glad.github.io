@@ -180,6 +180,7 @@ function searchWithGeoEnabled(location) {
 function searchWithoutGeoEnabled(error) {
   console.log(error);
   helper.setQueryParameter('aroundLatLngViaIP', true);
+  helper.setQueryParameter('aroundRadius', 10000);
   helper.search();
 }
 
