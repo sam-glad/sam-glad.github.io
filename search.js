@@ -37,28 +37,6 @@ function renderFoodTypeList(content) {
   });
 }
 
-// function renderStarsFacet() {
-//   let starsHtml = '';
-//   let fullStarsCount = 0;
-//   let emptyStarsCount = 5;
-//   const facetOptionsCount = 6;
-//   for (let i = 0; i < facetOptionsCount; i++) {
-//     starsHtml+= `<li id="${i}-stars" class="stars">`;
-//     for (let j = 0; j < fullStarsCount; j++) {
-//       starsHtml+= '<img src="resources/graphics/stars-plain.png" class="star" />';
-//     }
-//     for (let k = 0; k < emptyStarsCount; k++) {
-//       starsHtml+= '<img src="resources/graphics/star-empty.png" class="star" />';
-//     }
-//     starsHtml+= '</li>';
-//     fullStarsCount++;
-//     emptyStarsCount--;
-//   }
-//   $('ul#stars-count').html(() => {
-//     return starsHtml;
-//   });
-// }
-
 function renderStats(content) {
   $('p#stats').html(() => {
     return `<b class="num-results-found">${content.nbHits} results found</b> in ${content.processingTimeMS / 1000} seconds`;
@@ -117,7 +95,6 @@ helper.on('result', content => {
   renderStats(content);
   renderHits(content);
   renderFoodTypeList(content);
-  // renderStarsFacet();
 });
 
 helper.search();
