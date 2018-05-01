@@ -7,8 +7,8 @@ var helper = algoliasearchHelper(client, indexName, {
   facets: ['food_type', 'stars_count']
 });
 
-$('#restaurant-search').on('keyup', function() {
-  helper.setQuery($(this).val()).search();
+$('#restaurant-search').on('keyup', (e) => {
+  helper.setQuery(e.currentTarget.value).search();
 });
 
 $('#food-types').on('click', 'li[id^="ft-"]', e => {
