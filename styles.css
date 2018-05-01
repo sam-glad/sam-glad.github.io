@@ -59,49 +59,50 @@ input.restaurant-search::placeholder {
   opacity: 1;
 }
 
-ul.filters {
+ul.facet-list {
   list-style-type: none;
   padding-left: 10%;
   padding-bottom: 5%;
 }
 
-li.filter {
+li.facet {
   font-weight: bold;
   color: #363636;
 }
 
-li.selected-filter {
+li.selected-facet {
   background-color: #0090C7;
   border-radius: 3px;
 }
 
-li.hover-filter {
-  background-color: #0090C7;
-  border-radius: 3px;
-}
-
-li.selected-filter > span {
+li.selected-facet > span {
   color: #FFFFFF;
 }
 
-li.hover-filter > span {
-  color: #FFFFFF;
-}
-
-ul.filter-options {
+ul.facet-options {
   list-style-type: none;
   padding: 5% 3% 10% 3%;
 }
 
-span.filter-option {
+span.facet-option {
   padding-left: 6%;
   color: #0E0E0E;
 }
 
-li.filter-item {
+li.facet-item {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
   margin-right: 10%;
+}
+
+li.facet-item:hover {
+  cursor: pointer;
+  background-color: #0090C7;
+  border-radius: 3px;
+}
+
+li.facet-item:hover > span {
+  color: #FFFFFF;
 }
 
 span.results-for-type {

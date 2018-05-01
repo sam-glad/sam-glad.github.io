@@ -2,13 +2,33 @@ const applicationID = '0SQJCGW54X';
 const apiKey = '27e4a1695307e93e63743e67aeda4b29';
 const indexName = 'restaurants';
 const client = algoliasearch(applicationID, apiKey);
-const helper = algoliasearchHelper(client, indexName);
 
-$('li.filter-item').hover(function() { $(this).addClass('hover-filter') }, function() { $(this).removeClass('hover-filter') });
+var helper = algoliasearchHelper(client, indexName, {
+  facets: ['food_type', 'stars_count']
+});
+
+// $('li.facet-item').hover(() => { $(this).addClass('hover-facet') }, () => { $(this).removeClass('hover-facet') });
 
 $('#restaurant-search').on('keyup', function() {
   helper.setQuery($(this).val()).search();
 });
+
+$('#food-types').on('click', 'li[id^="ft-"]', e => {
+  // FIXME: Oy...
+  let facetValue = e.currentTarget.children[0].textContent;
+  helper.toggleFacetRefinement('food_type', facetValue).search();
+});
+
+function renderFoodTypeList(content) {
+  $('#food-types').html(() => {
+    return $.map(content.getFacetValues('food_type'), foodType => {
+      let li = $(`<li id=ft-${foodType.name} class="facet-item"></li>`);
+      li.html(`<span class="facet-option">${foodType.name}</span><span class="results-for-type">${foodType.count}</span>`);
+      if(foodType.isRefined) li.addClass('selected-facet');
+      return li;
+    });
+  });
+}
 
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
@@ -51,6 +71,8 @@ function renderHits(content) {
 
 helper.on('result', content => {
   renderHits(content);
+  renderFoodTypeList(content);
+
 });
 
 helper.search();
