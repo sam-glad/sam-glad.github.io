@@ -65,6 +65,12 @@ function renderStats(content) {
   });
 }
 
+function renderNoResultsFound(content) {
+  $('#show-results').html(() => {
+    return '<p>Sorry - no results found for that search. Try removing a filter or two.</p>'
+  });
+}
+
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
   const maxStars = 5;
@@ -105,6 +111,9 @@ function renderHits(content) {
 }
 
 helper.on('result', content => {
+  if (content.nbHits === 0) {
+    renderNoResultsFound(content);
+  }
   renderStats(content);
   renderHits(content);
   renderFoodTypeList(content);
