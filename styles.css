@@ -133,8 +133,13 @@ img.star {
   width: 20px;
 }
 
-.stars {
+li.stars {
+  cursor: pointer;
   margin-left: 1.5%;
+}
+
+li.not-selected-stars > img {
+  filter: grayscale(100%);
 }
 
 .stats {

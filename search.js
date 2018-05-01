@@ -7,16 +7,23 @@ var helper = algoliasearchHelper(client, indexName, {
   facets: ['food_type', 'stars_count']
 });
 
-// $('li.facet-item').hover(() => { $(this).addClass('hover-facet') }, () => { $(this).removeClass('hover-facet') });
-
 $('#restaurant-search').on('keyup', function() {
   helper.setQuery($(this).val()).search();
 });
 
 $('#food-types').on('click', 'li[id^="ft-"]', e => {
-  // FIXME: Oy...
   let facetValue = e.currentTarget.children[0].textContent;
   helper.toggleFacetRefinement('food_type', facetValue).search();
+});
+
+$('#stars-count').on('click', 'li', e => {
+  // Grey out other filters
+  $(e.currentTarget).removeClass('not-selected-stars');
+  [].slice.call($(e.currentTarget).siblings()).forEach(el => { el.classList.add('not-selected-stars') });
+  let facetValue = e.currentTarget.id.match(/\d/)[0];
+  // Clear potential existing filter and apply nwe one
+  helper.removeNumericRefinement('stars_count').search();
+  helper.addNumericRefinement('stars_count', '>', facetValue).search();
 });
 
 function renderFoodTypeList(content) {
@@ -29,6 +36,28 @@ function renderFoodTypeList(content) {
     });
   });
 }
+
+// function renderStarsFacet() {
+//   let starsHtml = '';
+//   let fullStarsCount = 0;
+//   let emptyStarsCount = 5;
+//   const facetOptionsCount = 6;
+//   for (let i = 0; i < facetOptionsCount; i++) {
+//     starsHtml+= `<li id="${i}-stars" class="stars">`;
+//     for (let j = 0; j < fullStarsCount; j++) {
+//       starsHtml+= '<img src="resources/graphics/stars-plain.png" class="star" />';
+//     }
+//     for (let k = 0; k < emptyStarsCount; k++) {
+//       starsHtml+= '<img src="resources/graphics/star-empty.png" class="star" />';
+//     }
+//     starsHtml+= '</li>';
+//     fullStarsCount++;
+//     emptyStarsCount--;
+//   }
+//   $('ul#stars-count').html(() => {
+//     return starsHtml;
+//   });
+// }
 
 function buildStarsReviewsParagraph(hit) {
   let starsParagraph = '<span>';
@@ -72,7 +101,7 @@ function renderHits(content) {
 helper.on('result', content => {
   renderHits(content);
   renderFoodTypeList(content);
-
+  // renderStarsFacet();
 });
 
 helper.search();
