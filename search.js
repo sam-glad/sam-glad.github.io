@@ -33,12 +33,34 @@ $('#payment-types').on('click', 'li[id^="pt-"]', e => {
   helper.toggleFacetRefinement('payment_options', facetValue).search();
 });
 
+function starsRefinementExists(helper) {
+  return helper.state.numericRefinements.stars_count &&
+         helper.state.numericRefinements.stars_count['>'] &&
+         helper.state.numericRefinements.stars_count['>'][0];
+}
+
+// Assumes starsRefinementExists(helper) check has already been performed
+function getStarsRefinement(helper) {
+  return helper.state.numericRefinements.stars_count['>'][0];
+}
+
 $('#stars-count').on('click', 'li', e => {
-  // Grey out other filters
-  $(e.currentTarget).removeClass('not-selected-stars');
+  if (starsRefinementExists(helper)) {
+    // Pull the number of stars by which we're about to refine from the <li>'s ID (set statically in index.HTML)
+    let clickedStarCount = parseInt(e.currentTarget.id.match(/\d/)[0]);
+    let refinedStarCount = getStarsRefinement(helper);
+    // Undo existing refinement/styling - and stop there - if user is clicking on it again, since they set it
+    if (clickedStarCount === refinedStarCount) {
+      helper.removeNumericRefinement('stars_count').search();
+      $('li.stars').removeClass('not-selected-stars');
+      return;
+    }
+  }
+
   [].slice.call($(e.currentTarget).siblings()).forEach(el => { el.classList.add('not-selected-stars') });
+  $(e.currentTarget).removeClass('not-selected-stars');
   let facetValue = e.currentTarget.id.match(/\d/)[0];
-  // Clear potential existing filter and apply nwe one
+  // Clear potential existing filter and apply new one
   helper.removeNumericRefinement('stars_count').search();
   helper.addNumericRefinement('stars_count', '>', facetValue).search();
 });
